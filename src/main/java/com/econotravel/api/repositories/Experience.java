@@ -1,24 +1,12 @@
 package com.econotravel.api.repositories;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name="experiences")
-public class Experience{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String description;
-    private double price;
-    private int duration;
-    private String accessibility;
-    private String tags;
+public class Experience {
 
-
-    public Experience(String name) {
-        this.name = name;
-    }
 
     public Long getId() {
         return id;
@@ -36,15 +24,6 @@ public class Experience{
         this.name = name;
     }
 
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -53,31 +32,52 @@ public class Experience{
         this.price = price;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
-    public String getAccessibility() {
-        return accessibility;
-    }
-
-    public void setAccessibility(String accessibility) {
-        this.accessibility = accessibility;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private double price;
+    private String duration;
 
     public Experience() {
+
     }
 
+    public Experience(Long id, String name, double price, String duration) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.duration = duration;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Experience that = (Experience) o;
+        return Double.compare(that.price, price) == 0 && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(duration, that.duration);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, duration);
+    }
+
+    @Override
+    public String toString() {
+        return "Experience{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", duration='" + duration + '\'' +
+                '}';
+    }
 }
