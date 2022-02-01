@@ -51,7 +51,7 @@ public class Experience {
 
     }
 
-    public Experience(Long id, String name, double price, String duration) {
+    public Experience(String name, double price, String duration) {
         this.id = id;
         this.name = name;
         this.price = price;

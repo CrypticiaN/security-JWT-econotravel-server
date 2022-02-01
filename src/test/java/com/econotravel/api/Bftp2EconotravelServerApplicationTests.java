@@ -49,12 +49,12 @@ class Bftp2EconotravelServerApplicationTests {
     }
 
     private void addSampleExperiences() {
-        List<Experience> movies = List.of(
-                new Experience("Paseo por el Montseny"),
-                new Experience("Visita a la sagrada familia")
+        List<Experience> experiences = List.of(
+                new Experience("Paseo por el Montseny", 255.00, "6h"),
+                new Experience("Visita a la sagrada familia", 50.00, "4h")
         );
 
-        experienceRepository.saveAll(movies);
+        experienceRepository.saveAll(experiences);
     }
 
     @Test
