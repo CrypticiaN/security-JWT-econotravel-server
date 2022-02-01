@@ -1,4 +1,4 @@
-package com.econotravel.api;
+package com.econotravel.api.repositories;
 
 import javax.persistence.*;
 

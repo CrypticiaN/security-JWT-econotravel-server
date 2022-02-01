@@ -1,5 +1,7 @@
 package com.econotravel.api;
 
+import com.econotravel.api.repositories.Experience;
+import com.econotravel.api.repositories.ExperienceRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
