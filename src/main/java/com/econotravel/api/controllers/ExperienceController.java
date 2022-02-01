@@ -27,11 +27,16 @@ public class ExperienceController {
 
     @GetMapping("/{id}")
     public Experience findExperience(@PathVariable Long id){
-        return experienceRepository.findById(id).get();
-
+        return experienceRepository.findById(id).orElseThrow(null);
     }
 
-    @PostMapping
+    @GetMapping("/edit/{id}")
+    public Experience updateExperienceById(@RequestBody Experience experience) {
+        experienceRepository.findById(experience.getId());
+        return experienceRepository.save(experience);
+    }
+
+    @PostMapping("/new")
     public Experience createExperience(@RequestBody Experience experience) {
         return experienceRepository.save(experience);
     }

@@ -6,7 +6,23 @@ import java.util.Objects;
 @Entity
 @Table(name="experiences")
 public class Experience {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private double price;
+    private String duration;
 
+    public Experience() {
+
+    }
+
+    public Experience(Long id, String name, double price, String duration) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.duration = duration;
+    }
 
     public Long getId() {
         return id;
@@ -37,24 +53,6 @@ public class Experience {
     }
 
     public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private double price;
-    private String duration;
-
-    public Experience() {
-
-    }
-
-    public Experience(String name, double price, String duration) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
         this.duration = duration;
     }
 

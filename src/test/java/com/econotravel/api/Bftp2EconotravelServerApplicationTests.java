@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,8 +52,8 @@ class Bftp2EconotravelServerApplicationTests {
 
     private void addSampleExperiences() {
         List<Experience> experiences = List.of(
-                new Experience("Paseo por el Montseny", 255.00, "6h"),
-                new Experience("Visita a la sagrada familia", 50.00, "4h")
+                new Experience(1L,"Paseo por el Montseny", 255.00, "6h"),
+                new Experience(2L,"Visita a la sagrada familia", 50.00, "4h")
         );
 
         experienceRepository.saveAll(experiences);
@@ -61,7 +62,7 @@ class Bftp2EconotravelServerApplicationTests {
     @Test
     void createsNewExperiences() throws Exception {
 
-        mockMvc.perform(post("/api/experiences")
+        mockMvc.perform(post("/api/experiences/new")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"name\": \"Paseo en Bici por el Montseny\"}")
         ).andExpect(status().is(200));
@@ -75,7 +76,7 @@ class Bftp2EconotravelServerApplicationTests {
 
     @Test
     void allowsToDeleteAExperience() throws Exception {
-        Experience experience = experienceRepository.save(new Experience("Paseo en Bici por el Montseny", 255.00, "2h"));
+        Experience experience = experienceRepository.save(new Experience(1L,"Paseo en Bici por el Montseny", 255.00, "2h"));
         mockMvc.perform(get("/api/experiences/delete/" + experience.getId()))
                 .andExpect(status().is(200));
 
