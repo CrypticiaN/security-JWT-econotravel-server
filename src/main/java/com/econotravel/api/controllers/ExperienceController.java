@@ -43,7 +43,7 @@ public class ExperienceController {
         return experienceRepository.save(experience);
     }
 
-    @PostMapping("/new")
+    @PostMapping
     public Experience createExperience(@RequestBody Experience experience) {
         return experienceRepository.save(experience);
     }
