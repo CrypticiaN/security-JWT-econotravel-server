@@ -3,17 +3,24 @@ package com.econotravel.api.controllers;
 import com.econotravel.api.repositories.Experience;
 import com.econotravel.api.repositories.ExperienceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/experiences")
 // NO INCLUIR NUNCA LA CABECERA CrossOrigin en un proyecto real
-@CrossOrigin
+@CrossOrigin (origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS})
+
+
 public class ExperienceController {
 
     private final ExperienceRepository experienceRepository;
+
+
 
     @Autowired
     public ExperienceController(ExperienceRepository experienceRepository) {
