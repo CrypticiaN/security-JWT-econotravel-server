@@ -2,6 +2,7 @@ package com.econotravel.api.repositories;
 
 import javax.persistence.*;
 import java.awt.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
