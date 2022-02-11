@@ -52,8 +52,9 @@ class Bftp2EconotravelServerApplicationTests {
 
     private void addSampleExperiences() {
         List<Experience> experiences = List.of(
-                new Experience(1L,"Paseo por el Montseny", 255.00, "6h"),
-                new Experience(2L,"Visita a la sagrada familia", 50.00, "4h")
+                new Experience(1L,"image", "Paseo por el Montseny", "description", 255.00, "6h", true, "description"),
+                new Experience(2L,"image", "Visita a la sagrada familia", "descrption", 50.00, "4h", true, "description" )
+
         );
 
         experienceRepository.saveAll(experiences);
@@ -76,7 +77,7 @@ class Bftp2EconotravelServerApplicationTests {
 
     @Test
     void allowsToDeleteAExperience() throws Exception {
-        Experience experience = experienceRepository.save(new Experience(1L,"Paseo en Bici por el Montseny", 255.00, "2h"));
+        Experience experience = experienceRepository.save(new Experience(1L, "image", "Paseo en Bici por el Montseny", "description", 255.00, "2h", true, "description"));
         mockMvc.perform(get("/api/experiences/delete/" + experience.getId()))
                 .andExpect(status().is(200));
 

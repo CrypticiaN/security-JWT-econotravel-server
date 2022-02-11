@@ -1,6 +1,7 @@
 package com.econotravel.api.repositories;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.Objects;
 
 @Entity
@@ -9,19 +10,32 @@ public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Lob
+    private String image;
     private String name;
+    @Lob
+    private String description;
     private double price;
     private String duration;
+    private boolean accessibility;
+    @Lob
+    private String accessibilityDescription;
 
     public Experience() {
 
     }
 
-    public Experience(Long id, String name, double price, String duration) {
+    public Experience(Long id, String image, String name, String description, double price, String duration, boolean accessibility, String accessibilityDescription) {
+
         this.id = id;
+        this.image = image;
         this.name = name;
+        this.description = description;
         this.price = price;
         this.duration = duration;
+        this.accessibility = accessibility;
+        this.accessibilityDescription = accessibilityDescription;
+
     }
 
     public Long getId() {
@@ -32,6 +46,10 @@ public class Experience {
         this.id = id;
     }
 
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
+
     public String getName() {
         return name;
     }
@@ -39,6 +57,10 @@ public class Experience {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
 
     public double getPrice() {
         return price;
@@ -56,26 +78,26 @@ public class Experience {
         this.duration = duration;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Experience that = (Experience) o;
-        return Double.compare(that.price, price) == 0 && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(duration, that.duration);
-    }
+    public boolean isAccessibility() { return accessibility; }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price, duration);
-    }
+    public void setAccessibility(boolean accessibility) { this.accessibility = accessibility; }
+
+    public String getAccessibilityDescription() { return accessibilityDescription; }
+
+    public void setAccessibilityDescription(String accessibilityDescription) { this.accessibilityDescription = accessibilityDescription; }
 
     @Override
     public String toString() {
         return "Experience{" +
                 "id=" + id +
+                ", image='" + image + '\'' +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 ", price=" + price +
                 ", duration='" + duration + '\'' +
+                ", accessibility='" + accessibility + '\'' +
+                ", accessibilityDescription='" + accessibilityDescription + '\'' +
                 '}';
     }
+
 }
